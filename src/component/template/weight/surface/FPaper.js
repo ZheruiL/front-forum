@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function PaperSheet (props) {
+export function FPaper (props) {
   const classes = useStyles()
   return (
     <Paper className={classes.root}>

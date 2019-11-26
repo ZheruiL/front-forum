@@ -7,7 +7,7 @@ import ApiTopic from '../../api/ApiTopic'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { PaperSheet } from '../template/weight/surface/PaperSheet'
+import { FPaper, PaperSheet } from '../template/weight/surface/FPaper'
 
 // import React, { Component } from 'react'
 // import ApiService from '../../service/ApiService'
@@ -94,7 +94,7 @@ class ListTopicComponent extends Component {
             New Topic
           </Button>
           {this.state.topics.map((topic, index) => (
-            <PaperSheet key={topic._id} title={topic.title} content={topic.content}>
+            <FPaper key={topic._id} title={topic.title} content={topic.content}>
               <Button
                 style={btnStyle}
                 startIcon={<DeleteIcon />}
@@ -105,7 +105,7 @@ class ListTopicComponent extends Component {
               >
                 Delete
               </Button>
-            </PaperSheet>
+            </FPaper>
           ))}
         </Template>
       </div>
