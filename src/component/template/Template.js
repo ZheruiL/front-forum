@@ -15,8 +15,18 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import LinearProgressComponent from '../template/LinearProgressComponent'
+
+import HomeIcon from '@material-ui/icons/Home'
+import WhatshotIcon from '@material-ui/icons/Whatshot'
+import NewReleasesIcon from '@material-ui/icons/NewReleases'
+import AddAlertIcon from '@material-ui/icons/AddAlert'
+import GradeIcon from '@material-ui/icons/Grade'
+import SettingsIcon from '@material-ui/icons/Settings'
+import HelpIcon from '@material-ui/icons/Help'
+import FeedbackIcon from '@material-ui/icons/Feedback'
+import InfoIcon from '@material-ui/icons/Info'
 
 import {
   BrowserRouter as Router,
@@ -34,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   appBar: {
+    backgroundColor: 'grey',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -78,6 +89,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   toolbar: {
+    backgroundColor: 'white',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -85,6 +97,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   content: {
+    marginTop: 50,
     flexGrow: 1,
     padding: theme.spacing(3)
   },
@@ -110,8 +123,22 @@ export default function Template (props = null) {
 
   const match = useRouteMatch()
 
+  const toolbarList = []
+  toolbarList.push({ text: 'Home', icon: HomeIcon })
+  toolbarList.push({ text: 'Trending', icon: WhatshotIcon })
+  toolbarList.push({ text: 'Newest topic', icon: NewReleasesIcon })
+  toolbarList.push({ text: 'Attention', icon: AddAlertIcon })
+  toolbarList.push({ text: 'Liked', icon: GradeIcon })
+
+  const settingToolbarList = []
+  settingToolbarList.push({ text: 'About', icon: InfoIcon })
+  settingToolbarList.push({ text: 'Setting', icon: SettingsIcon })
+  settingToolbarList.push({ text: 'Help', icon: HelpIcon })
+  settingToolbarList.push({ text: 'Send feedback', icon: FeedbackIcon })
+  // {props.isLoading === true ? <LinearProgress className={classes.linearProgress} /> : <div />}
   return (
     <div className={classes.root}>
+      <LinearProgressComponent isLoading={props.isLoading} />
       <CssBaseline />
       <AppBar
         position='fixed'
@@ -160,25 +187,24 @@ export default function Template (props = null) {
           </IconButton>
         </div>
         <List>
-          {['Hot topic', 'Attention', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {toolbarList.map((value, index) => (
+            <ListItem button key={value.text}>
+              <ListItemIcon><value.icon /></ListItemIcon>
+              <ListItemText primary={value.text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['Message', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {settingToolbarList.map((value, index) => (
+            <ListItem button key={value.text}>
+              <ListItemIcon><value.icon /></ListItemIcon>
+              <ListItemText primary={value.text} />
             </ListItem>
           ))}
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
         <div>
           {props.children}
         </div>
@@ -186,3 +212,4 @@ export default function Template (props = null) {
     </div>
   )
 }
+// {props.isLoading === true ? <LinearProgressComponent isLoading={props.isLoading} /> : <LinearProgressComponent isLoading={props.isLoading} />}

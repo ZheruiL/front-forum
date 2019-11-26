@@ -2,14 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import ProductTable from './showProducts'
 import * as serviceWorker from './serviceWorker'
-import Template from './component/template/template'
+import Template from './component/template/Template'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+// import ListItem from '@material-ui/core/ListItem'
+// import ListItemIcon from '@material-ui/core/ListItemIcon'
 
 const numbers = [1, 2, 3, 4, 5]
 // const doubled = numbers.map((number) => number * 2) // 当箭头函数的函数体只有一个 `return` 语句时，可以省略 `return` 关键字和方法体的花括号

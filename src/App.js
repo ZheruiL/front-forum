@@ -4,6 +4,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListTopicComponent from './component/topic/ListTopicComponent'
 import AddTopicComponent from './component/topic/AddTopicComponent'
+import LinearProgressComponent from './component/template/LinearProgressComponent'
 
 function App () {
   return (
@@ -12,7 +13,10 @@ function App () {
         <div className='col-md-6'>
           <Switch>
             <Route path='/' exact component={ListTopicComponent} />
+            <Route path='/feed/trending' exact component={ListTopicComponent} />
             <Route path='/topic/add' component={AddTopicComponent} />
+            <Route path='/test' component={LinearProgressComponent} />
+
           </Switch>
         </div>
       </Router>
