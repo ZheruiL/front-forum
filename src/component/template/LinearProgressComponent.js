@@ -27,7 +27,7 @@ class LinearProgressComponent extends React.Component {
       setTimeout(() => { this.setState({ display: 'none' }) }, 500) // 完成后过0.5秒消失
     }
     if (nextProps.isLoading === true) {
-      this.setState({ display: 'inline' })
+      this.setState({ display: 'block' })
     }
   }
 

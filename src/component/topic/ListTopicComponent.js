@@ -7,32 +7,12 @@ import ApiTopic from '../../api/ApiTopic'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { PaperSheet } from '../template/weight/surface/PaperSheet'
 
 // import React, { Component } from 'react'
 // import ApiService from '../../service/ApiService'
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: theme.spacing(3, 2),
-    margin: theme.spacing(3, 2)
-  }
-}))
 const btnStyle = {
   marginTop: 10
-}
-
-function PaperSheet (props) {
-  const classes = useStyles()
-  return (
-    <Paper className={classes.root}>
-      <Typography variant='h5' component='h3'>
-        {props.title}
-      </Typography>
-      <Typography component='p'>
-        {props.content}
-      </Typography>
-      {props.children}
-    </Paper>
-  )
 }
 
 class ListTopicComponent extends Component {
