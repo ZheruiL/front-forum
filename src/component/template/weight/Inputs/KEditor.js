@@ -3,6 +3,7 @@ import React from 'react'
 import { Editor, EditorState, RichUtils } from 'draft-js'
 import './KEditor.css'
 import 'draft-js/dist/Draft.css'
+import { Paper } from '@material-ui/core'
 
 class KEditor extends React.Component {
   constructor (props) {
@@ -65,29 +66,31 @@ class KEditor extends React.Component {
     }
 
     return (
-      <div className='RichEditor-root'>
-        <BlockStyleControls
-          editorState={editorState}
-          onToggle={this.toggleBlockType}
-        />
-        <InlineStyleControls
-          editorState={editorState}
-          onToggle={this.toggleInlineStyle}
-        />
-        <div className={className} onClick={this.focus}>
-          <Editor
-            blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
+      <Paper>
+        <div className='RichEditor-root'>
+          <BlockStyleControls
             editorState={editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
-            onTab={this.onTab}
-            placeholder='Tell a story...'
-            ref='editor'
-            spellCheck
+            onToggle={this.toggleBlockType}
           />
+          <InlineStyleControls
+            editorState={editorState}
+            onToggle={this.toggleInlineStyle}
+          />
+          <div className={className} onClick={this.focus}>
+            <Editor
+              blockStyleFn={getBlockStyle}
+              customStyleMap={styleMap}
+              editorState={editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+              onTab={this.onTab}
+              placeholder={(this.props.placeholder) ? this.props.placeholder : 'tell your story'}
+              ref='editor'
+              spellCheck
+            />
+          </div>
         </div>
-      </div>
+      </Paper>
     )
   }
 }

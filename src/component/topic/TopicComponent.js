@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { FPaper } from '../template/weight/surface/FPaper'
 import KEditor from '../template/weight/Inputs/KEditor'
+import Chip from '@material-ui/core/Chip'
 
 class TopicComponent extends Component {
   constructor (props) {
@@ -36,11 +37,6 @@ class TopicComponent extends Component {
     return (
       <div>
         <Template isLoading={this.state.isLoading}>
-          <Button onClick={() => { this.props.history.push('/topic/add') }} variant='outlined' color='primary'>
-            <AddIcon />
-            New Topic
-          </Button>
-
           <FPaper>
             <Typography variant='h5' component='h3'>
               {this.state.topic.title}
@@ -49,11 +45,15 @@ class TopicComponent extends Component {
               {this.state.topic.content}
             </p>
           </FPaper>
-          <KEditor />
+          <Chip label='0 comments' />
+          <KEditor placeholder='write your comment here :D' />
+          <Button size='large' variant='contained' color='Primary'>
+            Comment
+          </Button>
         </Template>
       </div>
     )
   }
 }
-
+/* style={{ marginLeft: 'auto', float: 'right' }} */
 export default TopicComponent
