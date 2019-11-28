@@ -11,6 +11,7 @@ import {FPaper} from "../template/weight/surface/FPaper"
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
+import {ControlledEditor} from "../template/weight/surface/FDraft"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -112,8 +113,11 @@ class AddTopicComponent extends Component{
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={2}>
+                  {/*<td colSpan={2}>
                     <textarea name="content" onChange={this.onChange} cols={40} rows={10} placeholder="content"/>
+                  </td>*/}
+                  <td>
+                    <FDraft/>
                   </td>
                 </tr>
                 <tr>
