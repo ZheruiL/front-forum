@@ -6,7 +6,7 @@ import React from 'react'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    margin: theme.spacing(3, 2)
+    margin: theme.spacing(3, 0)
   }
 }))
 

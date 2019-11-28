@@ -37,7 +37,14 @@ class AddTopicComponent extends Component{
           this.props.history.push('/')
         },2000)*/
         this.props.history.push('/')
+
+        // this.setState({message : 'topics added successfully.'});
+        // this.props.history.push('/')
       })
+    /* setTimeout(()=>{
+      this.props.history.push('/')
+    },1000) */
+
   }
 
   onChange = (e) =>
