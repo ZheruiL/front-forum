@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { FPaper, PaperSheet } from '../template/weight/surface/FPaper'
+import KTime from '../template/weight/dataDisplay/KTime'
 
 // import React, { Component } from 'react'
 // import ApiService from '../../service/ApiService'
@@ -69,6 +70,7 @@ class ListTopicComponent extends Component {
               <p>
                 {topic.content}
               </p>
+              <KTime time={new Date(topic.dateCreate)} />
               <Button
                 style={btnStyle}
                 startIcon={<DeleteIcon />}
