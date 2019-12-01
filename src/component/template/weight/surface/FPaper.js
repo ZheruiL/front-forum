@@ -6,7 +6,9 @@ import React from 'react'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    margin: theme.spacing(3, 2)
+    /* margin: theme.spacing(3, 0) */
+    marginTop: 15,
+    marginBottom: 15
   }
 }))
 
@@ -24,5 +26,3 @@ export function FPaper (props) {
     </Paper>
   )
 }
-
-

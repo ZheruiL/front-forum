@@ -20,6 +20,10 @@ class ApiTopic {
     return axios.get(BaseUrl)
   }
 
+  getTopic (topicId) {
+    return axios.get(BaseUrl + '/' + topicId)
+  }
+
   addTopic (topic) {
     return axios.post(BaseUrl, topic)
   }

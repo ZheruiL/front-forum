@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListTopicComponent from './component/topic/ListTopicComponent'
 import AddTopicComponent from './component/topic/AddTopicComponent'
 import LinearProgressComponent from './component/template/LinearProgressComponent'
+import TopicComponent from './component/topic/TopicComponent'
+import KEditor from './component/template/weight/Inputs/KEditor'
 
 function App () {
   return (
@@ -13,9 +15,12 @@ function App () {
         <div className='col-md-6'>
           <Switch>
             <Route path='/' exact component={ListTopicComponent} />
+            <Route path='/topics' exact component={ListTopicComponent} />
+            <Route path='/topics/:_id' exact component={TopicComponent} />
             <Route path='/feed/trending' exact component={ListTopicComponent} />
-            <Route path='/topic/add' component={AddTopicComponent} />
-            <Route path='/test' component={LinearProgressComponent} />
+            <Route path='/topic/add' exact component={AddTopicComponent} />
+            <Route path='/testprogress' component={LinearProgressComponent} />
+            <Route path='/testeditor' component={KEditor} />
 
           </Switch>
         </div>
