@@ -15,7 +15,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import LinearProgress from '@material-ui/core/LinearProgress'
 import LinearProgressComponent from '../template/LinearProgressComponent'
 
 import HomeIcon from '@material-ui/icons/Home'
@@ -29,12 +28,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback'
 import InfoIcon from '@material-ui/icons/Info'
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
+  Link
 } from 'react-router-dom'
 
 const drawerWidth = 240
@@ -120,8 +114,6 @@ export default function Template (props = null) {
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
-  const match = useRouteMatch()
 
   const toolbarList = []
   toolbarList.push({ text: 'Home', icon: HomeIcon })

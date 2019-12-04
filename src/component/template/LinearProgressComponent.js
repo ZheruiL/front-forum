@@ -22,7 +22,7 @@ class LinearProgressComponent extends React.Component {
     )
   } */
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps)
+    // console.log(nextProps)
     if (nextProps.isLoading === false) {
       setTimeout(() => { this.setState({ display: 'none' }) }, 500) // 完成后过0.5秒消失
     }

@@ -1,13 +1,11 @@
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Template from '../template/Template'
 import ApiTopic from '../../api/ApiTopic'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { FPaper, PaperSheet } from '../template/weight/surface/FPaper'
+import { FPaper } from '../template/weight/surface/FPaper'
 import KTime from '../template/weight/dataDisplay/KTime'
 
 // import React, { Component } from 'react'
@@ -61,15 +59,16 @@ class ListTopicComponent extends Component {
             New Topic
           </Button>
           {this.state.topics.map((topic, index) => (
-            <FPaper key={topic._id}>
+            <FPaper key={topic._id} type='hover'>
               <Typography variant='h5' component='h3'>
                 <a href='#' onClick={(e) => { e.preventDefault(); this.props.history.push('/topics/' + topic._id) }}>
                   {topic.title}
                 </a>
               </Typography>
-              <p>
-                {topic.content}
-              </p>
+              <div
+                className='content'
+                dangerouslySetInnerHTML={{ __html: topic.content }}
+              />
               <KTime time={new Date(topic.dateCreate)} />
               <Button
                 style={btnStyle}

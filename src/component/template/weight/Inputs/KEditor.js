@@ -4,6 +4,7 @@ import { Editor, EditorState, RichUtils } from 'draft-js'
 import './KEditor.css'
 import 'draft-js/dist/Draft.css'
 import { Paper } from '@material-ui/core'
+import { stateToHTML } from 'draft-js-export-html'
 
 class KEditor extends React.Component {
   constructor (props) {
@@ -11,7 +12,10 @@ class KEditor extends React.Component {
     this.state = { editorState: EditorState.createEmpty() }
 
     this.focus = () => this.refs.editor.focus()
-    this.onChange = (editorState) => this.setState({ editorState })
+    this.onChange = (editorState) => {
+      this.setState({ editorState })
+      this.props.onChange(stateToHTML(editorState.getCurrentContent())) // 加上这行才能在外面用onchange
+    }
 
     this.handleKeyCommand = (command) => this._handleKeyCommand(command)
     this.onTab = (e) => this._onTab(e)
@@ -67,7 +71,7 @@ class KEditor extends React.Component {
 
     return (
       <Paper>
-        <div className='RichEditor-root'>
+        <div className='RichEditor-root' onChange={this.onChange}>
           <BlockStyleControls
             editorState={editorState}
             onToggle={this.toggleBlockType}

@@ -1,28 +1,32 @@
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+// import { makeStyles } from '@material-ui/core/styles'
+// import Paper from '@material-ui/core/Paper'
 import React from 'react'
+// import Grid from '@material-ui/core/Grid'
+import './FPaper.css'
 
-const useStyles = makeStyles(theme => ({
+/* const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    /* margin: theme.spacing(3, 0) */
     marginTop: 15,
     marginBottom: 15
   }
-}))
-
+})) */
 export function FPaper (props) {
-  const classes = useStyles()
+  // const classes = useStyles()
+  let className
+  if (props.type === 'hover') {
+    className = 'paper paper-hover'
+  } else {
+    className = 'paper'
+  }
   return (
-    <Paper className={classes.root}>
-      <Typography variant='h5' component='h3'>
-        {props.title}
-      </Typography>
-      <Typography component='p'>
-        {props.content}
-      </Typography>
+    <div className={className}>
+      {/* <Grid container wrap='nowrap' spacing={2}>
+        <Grid item> */}
       {props.children}
-    </Paper>
+      {/*
+        </Grid>
+      </Grid> */}
+    </div>
   )
 }

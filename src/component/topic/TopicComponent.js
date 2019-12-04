@@ -33,6 +33,10 @@ class TopicComponent extends Component {
       })
   }
 
+  handleChange (e, name) {
+
+  }
+
   render () {
     return (
       <div>
@@ -41,12 +45,16 @@ class TopicComponent extends Component {
             <Typography variant='h5' component='h3'>
               {this.state.topic.title}
             </Typography>
-            <p>
-              {this.state.topic.content}
-            </p>
+            <div
+              className='content'
+              dangerouslySetInnerHTML={{ __html: this.state.topic.content }}
+            />
           </FPaper>
           <Chip label='0 comments' />
-          <KEditor placeholder='write your comment here :D' />
+          <KEditor
+            onChange={(html) => this.handleChange({ target: { value: html } }, 'content')}
+            placeholder='write your comment here :D'
+          />
           <Button size='large' variant='contained' color='Primary'>
             Comment
           </Button>

@@ -75,8 +75,8 @@ class KTime extends Component {
   }
 
   render () {
-    console.log(this.props.time)
-    console.log(this.state.dateDiff)
+    // console.log(this.props.time)
+    // console.log(this.state.dateDiff)
     return (
       <div>
         {this.state.dateDiff}
