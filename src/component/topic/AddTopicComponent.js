@@ -11,29 +11,13 @@ import SendIcon from '@material-ui/icons/Send'
 import KEditor from '../template/weight/Inputs/KEditor'
 import Swal from 'sweetalert2'
 import '../../style.css'
-import { Paper } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: theme.spacing(3, 2)
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    width: 350
-  }
-}))
-
-function FButtonSend (props) {
-  const classes = useStyles()
+function AddBtn (props) {
   return (
     <Button
       type='button'
       variant='contained'
       color='primary'
-      className={classes.button}
       endIcon={<SendIcon />}
       onClick={props.onClick}
     >
@@ -97,8 +81,6 @@ class AddTopicComponent extends Component {
     ApiTopic.addTopic(topic)
       .then(res => {
         this.props.history.push('/')
-        // this.setState({message : 'topics added successfully.'});
-        // this.props.history.push('/')
       })
   }
 
@@ -111,6 +93,7 @@ class AddTopicComponent extends Component {
               <TextField
                 label='Title'
                 value={this.state.title}
+                style={{ width: '80%' }}
                 multiline
                 rowsMax='4'
                 onChange={(e) => this.handleChange(e, 'title')}
@@ -118,9 +101,12 @@ class AddTopicComponent extends Component {
                 variant='outlined'
               />
 
-              <KEditor value={this.state.content} onChange={(html) => this.handleChange({ target: { value: html } }, 'content')} />
+              <KEditor
+                value={this.state.content}
+                onChange={(html) => this.handleChange({ target: { value: html } }, 'content')}
+              />
 
-              <FButtonSend onClick={this.handleSubmit} />
+              <AddBtn onClick={this.handleSubmit} />
             </FPaper>
           </form>
         </Template>

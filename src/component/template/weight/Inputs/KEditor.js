@@ -70,31 +70,29 @@ class KEditor extends React.Component {
     }
 
     return (
-      <Paper>
-        <div className='RichEditor-root' onChange={this.onChange}>
-          <BlockStyleControls
+      <div className='RichEditor-root' onChange={this.onChange}>
+        <BlockStyleControls
+          editorState={editorState}
+          onToggle={this.toggleBlockType}
+        />
+        <InlineStyleControls
+          editorState={editorState}
+          onToggle={this.toggleInlineStyle}
+        />
+        <div className={className} onClick={this.focus}>
+          <Editor
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleMap}
             editorState={editorState}
-            onToggle={this.toggleBlockType}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            onTab={this.onTab}
+            placeholder={(this.props.placeholder) ? this.props.placeholder : 'tell your story'}
+            ref='editor'
+            spellCheck
           />
-          <InlineStyleControls
-            editorState={editorState}
-            onToggle={this.toggleInlineStyle}
-          />
-          <div className={className} onClick={this.focus}>
-            <Editor
-              blockStyleFn={getBlockStyle}
-              customStyleMap={styleMap}
-              editorState={editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-              onTab={this.onTab}
-              placeholder={(this.props.placeholder) ? this.props.placeholder : 'tell your story'}
-              ref='editor'
-              spellCheck
-            />
-          </div>
         </div>
-      </Paper>
+      </div>
     )
   }
 }
