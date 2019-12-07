@@ -70,6 +70,7 @@ class ListTopicComponent extends Component {
                 dangerouslySetInnerHTML={{ __html: topic.content }}
               />
               <KTime time={new Date(topic.dateCreate)} />
+              <br />
               <Button
                 style={btnStyle}
                 startIcon={<DeleteIcon />}

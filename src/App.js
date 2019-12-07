@@ -7,8 +7,8 @@ import AddTopicComponent from './component/topic/AddTopicComponent'
 import LinearProgressComponent from './component/template/LinearProgressComponent'
 import TopicComponent from './component/topic/TopicComponent'
 import KEditor from './component/template/weight/Inputs/KEditor'
-import Loginpage from "./component/login/Loginpage"
-import Signuppage from "./component/login/Signuppage"
+import LoginComponent from './component/login/LoginComponent'
+import SignupComponent from './component/login/SignupComponent'
 
 function App () {
   return (
@@ -17,8 +17,8 @@ function App () {
         <div className='col-md-6'>
           <Switch>
             <Route path='/' exact component={ListTopicComponent} />
-            <Route path='/login' component={Loginpage} />
-            <Route path='/signup' component={Signuppage} />
+            <Route path='/login' component={LoginComponent} />
+            <Route path='/signup' component={SignupComponent} />
             <Route path='/topics' exact component={ListTopicComponent} />
             <Route path='/topics/:_id' exact component={TopicComponent} />
             <Route path='/feed/trending' exact component={ListTopicComponent} />

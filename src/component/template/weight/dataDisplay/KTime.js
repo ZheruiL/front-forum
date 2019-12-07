@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+const divStyle = {
+  color: 'grey',
+  display: 'inline'
+}
 class KTime extends Component {
   constructor (props) {
     super(props)
@@ -78,7 +82,7 @@ class KTime extends Component {
     // console.log(this.props.time)
     // console.log(this.state.dateDiff)
     return (
-      <div>
+      <div style={divStyle}>
         {this.state.dateDiff}
       </div>
     )

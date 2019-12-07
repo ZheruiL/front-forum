@@ -5,22 +5,29 @@ import ApiTopic from '../../api/ApiTopic'
 import Button from '@material-ui/core/Button'
 
 import { FPaper } from '../template/weight/surface/FPaper'
-import KEditor from '../template/weight/Inputs/KEditor'
 import Chip from '@material-ui/core/Chip'
-import { Paper } from '@material-ui/core'
 import ApiComment from '../../api/ApiComment'
 import KTime from '../template/weight/dataDisplay/KTime'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Swal from 'sweetalert2'
+import TextField from '@material-ui/core/TextField'
+import Avatar from '@material-ui/core/Avatar'
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
+import ThumbDownIcon from '@material-ui/icons/ThumbDown'
 
-const btnStyle = {
-  marginTop: 10
+const commentInputStyle = {
+  width: '100%'
+}
+const commentDivStyle = {
+  marginTop: '18px',
+  marginBottom: '18px'
 }
 
 class TopicComponent extends Component {
   constructor (props) {
     super(props)
     this.handleAddComment = this.handleAddComment.bind(this)
+    // this.deleteComment = this.deleteComment.bind(this)
 
     this.state = {
       _topicId: this.props.match.params._id,
@@ -53,7 +60,7 @@ class TopicComponent extends Component {
     // console.log(topic)
     let error = ''
     if (comment.content === '') {
-      error += '<p>content is required</p>'
+      error += 'content is required'
     }
     if (error !== '') {
       Swal.fire({
@@ -87,43 +94,83 @@ class TopicComponent extends Component {
             <Typography variant='h5' component='h3'>
               {this.state.topic.title}
             </Typography>
+            <br />
             <div
               className='content'
               dangerouslySetInnerHTML={{ __html: this.state.topic.content }}
             />
-          </FPaper>
-          <Chip label={this.state.countComments + ' comments'} />
+            <br />
+            <table>
+              <tr>
+                <td>
+                  <Avatar>J</Avatar>
+                </td>
+                <td>
+                  Jerry
+                </td>
+              </tr>
+            </table>
+            <hr />
+            <div>
+              <Chip label={this.state.countComments + ' comments'} />
+            </div>
 
-          {this.state.comments.map((comment, index) => (
-            <FPaper key={'comment+' + comment._id} type='hover'>
-              <div
-                className='content'
-                dangerouslySetInnerHTML={{ __html: comment.content }}
-              />
-              <KTime time={new Date(comment.dateCreate)} />
-              <Button
-                style={btnStyle}
-                startIcon={<DeleteIcon />}
-                onClick={() => this.deleteComment(comment._id)}
-                variant='contained'
-                color='secondary'
-                size='small'
-              >
-                Delete
-              </Button>
-            </FPaper>
-          ))}
-
-          <Paper>
-            <KEditor
-              value='bilibili'
-              onChange={(html) => this.handleChange({ target: { value: html } }, 'commentContent')}
-              placeholder='write your comment here :D'
+            <TextField
+              onChange={(e) => this.handleChange(e, 'commentContent')}
+              value={this.state.commentContent}
+              style={commentInputStyle}
+              placeholder='write your comment here'
+              multiline
+              margin='normal'
             />
-          </Paper>
-          <Button onClick={this.handleAddComment} size='large' variant='contained' color='Primary'>
-            Comment
-          </Button>
+            <div align='right'>
+              <Button onClick={this.handleAddComment} size='small' variant='contained' color='Primary'>
+                Comment
+              </Button>
+            </div>
+
+            {this.state.comments.map((comment, index) => (
+              <div key={'comment+' + comment._id} style={commentDivStyle}>
+                <table>
+                  <tr>
+                    <td rowSpan={3} style={{ verticalAlign: 'top' }}>
+                      <Avatar>J</Avatar>
+                    </td>
+                    <td>
+                      <b style={{ marginRight: 10 }}>
+                        Jerry
+                      </b>
+                      <KTime time={new Date(comment.dateCreate)} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={4}>
+                      <div
+                        style={{ whiteSpace: 'pre-line' }}
+                        className='content'
+                        dangerouslySetInnerHTML={{ __html: comment.content }}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <ThumbUpAltIcon style={{ marginRight: 30 }} color='action' />
+                      <ThumbDownIcon color='action' />
+                    </td>
+                  </tr>
+                </table>
+                {/*
+                <Chip
+                  icon={<DeleteIcon />}
+                  label='Delete'
+                  clickable
+                  color='secondary'
+                  onClick={() => this.deleteComment(comment._id)}
+                  variant='outlined'
+                /> */}
+              </div>
+            ))}
+          </FPaper>
         </Template>
       </div>
     )

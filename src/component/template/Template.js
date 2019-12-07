@@ -1,7 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
+import {
+  useHistory,
+  Link
+} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import List from '@material-ui/core/List'
@@ -26,10 +30,12 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import HelpIcon from '@material-ui/icons/Help'
 import FeedbackIcon from '@material-ui/icons/Feedback'
 import InfoIcon from '@material-ui/icons/Info'
+import InputBase from '@material-ui/core/InputBase'
+import SearchIcon from '@material-ui/icons/Search'
 
-import {
-  Link
-} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
+import { AccountCircle } from '@material-ui/icons'
 
 const drawerWidth = 240
 
@@ -52,6 +58,13 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     })
+  },
+  title: {
+    flexGrow: 1,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block'
+    }
   },
   menuButton: {
     marginRight: 36
@@ -99,7 +112,45 @@ const useStyles = makeStyles(theme => ({
   link: {
     color: 'white',
     textDecorationLine: 'none'
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto'
+    }
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inputRoot: {
+    color: 'inherit'
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 120,
+      '&:focus': {
+        width: 200
+      }
+    }
   }
+
 }))
 
 export default function Template (props = null) {
@@ -151,11 +202,45 @@ export default function Template (props = null) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap>
+          <Typography variant='h6' noWrap className={classes.title}>
             <Link to='' className={classes.link}>
               Forum
             </Link>
           </Typography>
+          <div className={classes.search} style={{ marginRight: 20 }}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder='Search topic…'
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          {/* todo if it's logged in */}
+          {/* <IconButton
+            aria-label='account of current user'
+            aria-controls='primary-search-account-menu'
+            aria-haspopup='true'
+            color='inherit'
+          >
+            <AccountCircle />
+          </IconButton> */}
+          <Link to='/login' className={classes.link}>
+            <Button
+              variant='outlined'
+              aria-label='account of current user'
+              aria-controls='primary-search-account-menu'
+              aria-haspopup='true'
+              color='inherit'
+            >
+              <AccountCircle />
+              LOGIN
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -204,4 +289,3 @@ export default function Template (props = null) {
     </div>
   )
 }
-// {props.isLoading === true ? <LinearProgressComponent isLoading={props.isLoading} /> : <LinearProgressComponent isLoading={props.isLoading} />}

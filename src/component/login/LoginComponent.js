@@ -5,7 +5,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
-import Link from '@material-ui/core/Link'
+import {
+  Link
+} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
@@ -44,7 +46,7 @@ function Flogin (props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Login
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -80,16 +82,16 @@ function Flogin (props) {
             color='primary'
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href='#' variant='body2'>
+              <Link to='forgetPassword' variant='body2'>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link to='/signup' variant='body2'>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -100,7 +102,7 @@ function Flogin (props) {
     </Container>
   )
 }
-export class Loginpage extends React.Component {
+export class LoginComponent extends React.Component {
   render () {
     return (
       <Flogin />
@@ -108,4 +110,4 @@ export class Loginpage extends React.Component {
   }
 }
 
-export default Loginpage
+export default LoginComponent
