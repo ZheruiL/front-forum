@@ -8,7 +8,8 @@ import LinearProgressComponent from './component/template/LinearProgressComponen
 import TopicComponent from './component/topic/TopicComponent'
 import KEditor from './component/template/weight/Inputs/KEditor'
 import LoginComponent from './component/login/LoginComponent'
-import SignupComponent from './component/login/SignupComponent'
+import SignUpComponent from './component/login/SignUpComponent'
+import ProfileComponent from "./component/user/ProfileComponent"
 
 function App () {
   return (
@@ -18,7 +19,8 @@ function App () {
           <Switch>
             <Route path='/' exact component={ListTopicComponent} />
             <Route path='/login' component={LoginComponent} />
-            <Route path='/signup' component={SignupComponent} />
+            <Route path='/signup' component={SignUpComponent} />
+            <Route path='/profile' component={ProfileComponent} />
             <Route path='/topics' exact component={ListTopicComponent} />
             <Route path='/topics/:_id' exact component={TopicComponent} />
             <Route path='/feed/trending' exact component={ListTopicComponent} />
