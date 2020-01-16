@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Template from '../template/Template'
 import { FPaper } from '../template/weight/surface/FPaper'
+import Swal from "sweetalert2"
+import ApiUser from "../../api/ApiUser"
 
 const paperStyle = {
   marginTop: 10,
@@ -41,15 +43,58 @@ export class LoginComponent extends React.Component {
 
   constructor (props) {
     super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       isLoading: true,
-      user: [],
+      email: '',
+      password: '',
       message: null
     }
   }
 
   componentDidMount () {
     this.setState({ isLoading: false })
+  }
+
+  handleChange (event, name) {
+    this.setState({ [name]: event.target.value })
+  }
+
+  handleSubmit (event) {
+    let error = ''
+    const user = { email: this.state.email, password: this.state.password }
+    if (user.email === '') {
+      error += 'email is required<br/>'
+    }
+    if (user.password === '') {
+      error += 'password is required<br/>'
+    }
+    if (error !== '') {
+      Swal.fire({
+        title: 'Error!',
+        html: error,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      })
+      return
+    }
+    this.setState({ isLoading: true })
+    ApiUser.login(user)
+      .then(res => {
+        console.log(res);
+        // this.props.history.push('/')
+      })
+      .catch(error => {
+        Swal.fire({
+          title: 'Error!',
+          html: 'email or password incorrect',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+        this.setState( {isLoading: false })
+        console.log(error)
+      })
   }
 
   render () {
@@ -67,6 +112,7 @@ export class LoginComponent extends React.Component {
               </Typography>
               <form style={formStyle} noValidate>
                 <TextField
+                  onChange={(e) => this.handleChange(e, 'email')}
                   variant='outlined'
                   margin='normal'
                   required
@@ -78,6 +124,7 @@ export class LoginComponent extends React.Component {
                   autoFocus
                 />
                 <TextField
+                  onChange={(e) => this.handleChange(e, 'password')}
                   variant='outlined'
                   margin='normal'
                   required
@@ -93,11 +140,12 @@ export class LoginComponent extends React.Component {
                   label='Remember me'
                 />
                 <Button
-                  type='submit'
+                  type='button'
                   fullWidth
                   variant='contained'
                   color='primary'
                   style={submitStyle}
+                  onClick={this.handleSubmit}
                 >
                   Login
                 </Button>
