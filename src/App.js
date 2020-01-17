@@ -9,7 +9,7 @@ import TopicComponent from './component/topic/TopicComponent'
 import KEditor from './component/template/weight/Inputs/KEditor'
 import LoginComponent from './component/login/LoginComponent'
 import SignUpComponent from './component/login/SignUpComponent'
-import ProfileComponent from "./component/user/ProfileComponent"
+import ProfileComponent from './component/user/ProfileComponent'
 
 function App () {
   return (

@@ -16,7 +16,7 @@ import Container from '@material-ui/core/Container'
 import Template from '../template/Template'
 import { FPaper } from '../template/weight/surface/FPaper'
 import Swal, { isLoading } from 'sweetalert2'
-import ApiUser from "../../api/ApiUser"
+import ApiUser from '../../api/ApiUser'
 
 const paperStyle = {
   display: 'flex',
@@ -61,7 +61,7 @@ export class SignUpComponent extends React.Component {
 
   handleSubmit (event) {
     let error = ''
-    if(this.state.password !== this.state.passwordConfirm){
+    if (this.state.password !== this.state.passwordConfirm) {
       error += 'Two input password must be consistent<br/>'
     }
     const user = { username: this.state.username, email: this.state.email, password: this.state.password }
@@ -87,7 +87,7 @@ export class SignUpComponent extends React.Component {
     this.setState({ isLoading: true })
     ApiUser.register(user)
       .then(res => {
-        console.log(res);
+        console.log(res)
         this.props.history.push('/')
       })
   }

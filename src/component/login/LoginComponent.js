@@ -15,8 +15,8 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Template from '../template/Template'
 import { FPaper } from '../template/weight/surface/FPaper'
-import Swal from "sweetalert2"
-import ApiUser from "../../api/ApiUser"
+import Swal from 'sweetalert2'
+import ApiUser from '../../api/ApiUser'
 
 const paperStyle = {
   marginTop: 10,
@@ -40,7 +40,6 @@ const submitStyle = {
 }
 
 export class LoginComponent extends React.Component {
-
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -82,7 +81,7 @@ export class LoginComponent extends React.Component {
     this.setState({ isLoading: true })
     ApiUser.login(user)
       .then(res => {
-        console.log(res);
+        console.log(res)
         // this.props.history.push('/')
       })
       .catch(error => {
@@ -92,7 +91,7 @@ export class LoginComponent extends React.Component {
           icon: 'error',
           confirmButtonText: 'OK'
         })
-        this.setState( {isLoading: false })
+        this.setState({ isLoading: false })
         console.log(error)
       })
   }

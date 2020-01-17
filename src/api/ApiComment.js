@@ -1,5 +1,6 @@
 import axios from 'axios'
 const BaseUrl = 'http://localhost:3001/comments'
+axios.defaults.withCredentials = true
 
 class ApiComment {
   fetchComments (topicId) {
